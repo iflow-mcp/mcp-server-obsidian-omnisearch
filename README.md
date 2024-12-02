@@ -35,10 +35,10 @@ uv install
 
 ## Configuration
 
-Update the `OBSIDIAN_VAULT_PATH` in `server.py` to point to your Obsidian vault location:
+The Obsidian vault path is now provided as a command line argument when running the server:
 
-```python
-OBSIDIAN_VAULT_PATH = "/path/to/your/obsidian/vault"
+```bash
+python server.py /path/to/your/obsidian/vault
 ```
 
 ## Usage
@@ -65,11 +65,8 @@ On Windows: `%APPDATA%/Claude/claude_desktop_config.json`
         "--directory",
         "<dir_to>/mcp-server-obsidian-omnisearch",
         "run",
-        "--with",
-        "fastmcp",
-        "fastmcp",
-        "run",
-        "<dir_to>/mcp-server-omnisearch/server.py"
+        "mcp-server-obsidian-omnisearch",
+        "/path/to/your/obsidian/vault"
       ]
     }
   }
@@ -103,6 +100,52 @@ On Windows: `%APPDATA%/Claude/claude_desktop_config.json`
 - Parameters:
   - `query`: Search query string
 - Returns: List of absolute paths to matching notes
+
+## Development
+
+### Building and Publishing
+
+To prepare the package for distribution:
+
+1. Sync dependencies and update lockfile:
+```bash
+uv sync
+```
+
+2. Build package distributions:
+```bash
+uv build
+```
+
+This will create source and wheel distributions in the `dist/` directory.
+
+3. Publish to PyPI:
+```bash
+uv publish
+```
+
+Note: You'll need to set PyPI credentials via environment variables or command flags:
+- Token: `--token` or `UV_PUBLISH_TOKEN`
+- Or username/password: `--username`/`UV_PUBLISH_USERNAME` and `--password`/`UV_PUBLISH_PASSWORD`
+
+### Debugging
+
+Since MCP servers run over stdio, debugging can be challenging. For the best debugging
+experience, we strongly recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector).
+
+You can launch the MCP Inspector via [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) with this command:
+
+```bash
+npx @modelcontextprotocol/inspector uv --directory /path/to/mcp-server-obsidian-omnisearch run mcp-server-obsidian-omnisearch
+```
+
+Upon launching, the Inspector will display a URL that you can access in your browser to begin debugging.
+
+You can also watch the server logs with this command:
+
+```bash
+tail -n 20 -f ~/Library/Logs/Claude/mcp-server-mcp-server-obsidian-omnisearch.log
+```
 
 ## Dependencies
 
