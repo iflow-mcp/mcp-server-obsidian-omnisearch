@@ -3,7 +3,7 @@ from urllib.parse import quote
 import requests
 import os
 
-mcp = FastMCP("Omnisearch")
+mcp = FastMCP("obsidian-omnisearch")
 
 OBSIDIAN_VAULT_PATH = "/Users/anpigon/ObsidianVault/2ndbrain"
 
