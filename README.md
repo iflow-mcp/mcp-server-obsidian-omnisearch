@@ -1,5 +1,6 @@
 # MCP Server Obsidian Omnisearch
 
+[![smithery badge](https://smithery.ai/badge/@anpigon/mcp-server-obsidian-omnisearch)](https://smithery.ai/server/@anpigon/mcp-server-obsidian-omnisearch)
 A FastMCP-based server that provides Obsidian vault search functionality through a REST API interface.
 
 ## Overview
@@ -22,6 +23,15 @@ This project implements a search service that allows you to search through Obsid
 
 ## Installation
 
+### Installing via Smithery
+
+To install MCP Server Obsidian Omnisearch for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@anpigon/mcp-server-obsidian-omnisearch):
+
+```bash
+npx -y @smithery/cli install @anpigon/mcp-server-obsidian-omnisearch --client claude
+```
+
+### Manual Installation
 1. Clone the repository:
 ```bash
 git clone https://github.com/anpigon/mcp-server-obsidian-omnisearch.git
