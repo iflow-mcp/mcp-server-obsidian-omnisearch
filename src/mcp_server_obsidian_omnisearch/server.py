@@ -5,12 +5,13 @@ import os
 
 
 def serve(obsidian_vault_path: str):
-    mcp = FastMCP("obsidian-omnisearch")
+    mcp = FastMCP("obsidian-omnisearch", log_level="ERROR")
 
     @mcp.tool()
     def obsidian_notes_search(query: str):
         """Search Obsidian(옵시디언) notes and return absolute paths to the matching notes.
-        The returned paths can be used with the read_note tool to view the note contents."""
+        The returned paths can be used with the read_note tool to view the note contents.
+        """
         try:
             search_url: str = "http://localhost:51361/search?q={query}"
             response = requests.get(search_url.format(query=quote(query)))
